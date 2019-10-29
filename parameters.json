@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_alexvm_name": {
+            "value": null
+        },
+        "networkInterfaces_alexvm532_name": {
+            "value": null
+        },
+        "publicIPAddresses_alexvm_ip_name": {
+            "value": null
+        },
+        "bastionHosts_alex_vm_bastion_name": {
+            "value": null
+        },
+        "storageAccounts_alexvmrgdiag_name": {
+            "value": null
+        },
+        "storageAccounts_modernwarfare_name": {
+            "value": null
+        },
+        "virtualNetworks_alex_vm_rg_vnet_name": {
+            "value": null
+        },
+        "networkSecurityGroups_alexvm_nsg_name": {
+            "value": null
+        },
+        "publicIPAddresses_alex_vm_rg_vnet_ip_name": {
+            "value": null
+        }
+    }
+}
