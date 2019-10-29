@@ -22,10 +22,6 @@
             "defaultValue": "alexvmrgdiag",
             "type": "String"
         },
-        "storageAccounts_modernwarfare_name": {
-            "defaultValue": "modernwarfare",
-            "type": "String"
-        },
         "virtualNetworks_alex_vm_rg_vnet_name": {
             "defaultValue": "alex-vm-rg-vnet",
             "type": "String"
@@ -167,39 +163,7 @@
                     "keySource": "Microsoft.Storage"
                 }
             }
-        },
-        {
-            "type": "Microsoft.Storage/storageAccounts",
-            "apiVersion": "2019-04-01",
-            "name": "[parameters('storageAccounts_modernwarfare_name')]",
-            "location": "southafricanorth",
-            "sku": {
-                "name": "Standard_RAGRS",
-                "tier": "Standard"
-            },
-            "kind": "StorageV2",
-            "properties": {
-                "networkAcls": {
-                    "bypass": "AzureServices",
-                    "virtualNetworkRules": [],
-                    "ipRules": [],
-                    "defaultAction": "Allow"
-                },
-                "supportsHttpsTrafficOnly": true,
-                "encryption": {
-                    "services": {
-                        "file": {
-                            "enabled": true
-                        },
-                        "blob": {
-                            "enabled": true
-                        }
-                    },
-                    "keySource": "Microsoft.Storage"
-                },
-                "accessTier": "Hot"
-            }
-        },
+        },        
         {
             "type": "Microsoft.Network/networkSecurityGroups/securityRules",
             "apiVersion": "2019-09-01",
@@ -265,23 +229,7 @@
                     "enabled": false
                 }
             }
-        },
-        {
-            "type": "Microsoft.Storage/storageAccounts/blobServices",
-            "apiVersion": "2019-04-01",
-            "name": "[concat(parameters('storageAccounts_modernwarfare_name'), '/default')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_modernwarfare_name'))]"
-            ],
-            "properties": {
-                "cors": {
-                    "corsRules": []
-                },
-                "deleteRetentionPolicy": {
-                    "enabled": false
-                }
-            }
-        },
+        },  
         {
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2019-03-01",
@@ -389,31 +337,7 @@
             "properties": {
                 "publicAccess": "None"
             }
-        },
-        {
-            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
-            "apiVersion": "2019-04-01",
-            "name": "[concat(parameters('storageAccounts_modernwarfare_name'), '/default/cod')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_modernwarfare_name'), 'default')]",
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_modernwarfare_name'))]"
-            ],
-            "properties": {
-                "publicAccess": "Container"
-            }
-        },
-        {
-            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
-            "apiVersion": "2019-04-01",
-            "name": "[concat(parameters('storageAccounts_modernwarfare_name'), '/default/', parameters('storageAccounts_modernwarfare_name'))]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_modernwarfare_name'), 'default')]",
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_modernwarfare_name'))]"
-            ],
-            "properties": {
-                "publicAccess": "None"
-            }
-        },
+        },    
         {
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2019-09-01",
