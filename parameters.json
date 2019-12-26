@@ -40,8 +40,12 @@
                 "description": "The location where the resources will be deployed."
             }
         },
-        "vaultSubscription":{
-            "value":null
+        "vaultSubscription": {
+            "type": "string",
+            "value": "[subscription().subscriptionId]",
+            "metadata": {
+                "description": "The name of the subscription that contains the keyvault."
+            }
         },
         "vaultResourceGroupName":{
             "value": null

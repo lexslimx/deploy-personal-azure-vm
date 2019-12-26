@@ -42,7 +42,7 @@
             "type":"securestring",
             "defaultValue":null
 
-        }   
+        }  
     },    
     "variables": {},
     "resources": [
