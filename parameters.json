@@ -3,31 +3,75 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "virtualMachines_alexvm_name": {
-            "value": null
+            "defaultValue": "alexvm",
+            "type": "String"
         },
         "networkInterfaces_alexvm532_name": {
-            "value": null
+            "defaultValue": "alexvm532",
+            "type": "String"
         },
         "publicIPAddresses_alexvm_ip_name": {
-            "value": null
+            "defaultValue": "alexvm-ip",
+            "type": "String"
         },
         "bastionHosts_alex_vm_bastion_name": {
-            "value": null
+            "defaultValue": "alex-vm-bastion",
+            "type": "String"
         },
         "storageAccounts_alexvmrgdiag_name": {
-            "value": null
-        },
-        "storageAccounts_modernwarfare_name": {
-            "value": null
+            "defaultValue": "alexvmrgdiag",
+            "type": "String"
         },
         "virtualNetworks_alex_vm_rg_vnet_name": {
-            "value": null
+            "defaultValue": "alex-vm-rg-vnet",
+            "type": "String"
         },
         "networkSecurityGroups_alexvm_nsg_name": {
-            "value": null
+            "defaultValue": "alexvm-nsg",
+            "type": "String"
         },
         "publicIPAddresses_alex_vm_rg_vnet_ip_name": {
+            "defaultValue": "alex-vm-rg-vnet-ip",
+            "type": "String"
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+                "description": "The location where the resources will be deployed."
+            }
+        },
+        "vaultSubscription":{
+            "value":null
+        },
+        "vaultResourceGroupName":{
             "value": null
+        },
+        "vaultName":{
+            "value": null
+        },   
+        "adminPassword_secretName":{
+            "value": null
+        },
+        "adminUserName_secretName":{
+            "value":null
+        },
+        "adminPassword": {            
+            "reference": {
+                "keyVault": {
+                    "id": "[resourceId(parameters('vaultSubscription'), parameters('vaultResourceGroupName'), 'Microsoft.KeyVault/vaults', parameters('vaultName'))]"
+                },
+                "secretName": "[parameters('adminPasswordSecretName')]"
+            }
+        },
+          "adminUserName": {
+              "type":"string",
+            "reference": {
+                "keyVault": {
+                    "id": "[resourceId(parameters('vaultSubscription'), parameters('vaultResourceGroupName'), 'Microsoft.KeyVault/vaults', parameters('vaultName'))]"
+                },
+                "secretName": "[parameters('adminUserNameSecretName')]"
+            }
         }
     }
 }

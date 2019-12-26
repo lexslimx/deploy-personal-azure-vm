@@ -1,40 +1,49 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-        "virtualMachines_alexvm_name": {
-            "defaultValue": "alexvm",
+    "parameters":{
+         "virtualMachines_alexvm_name": {
+            "defaultValue": null,
             "type": "String"
         },
         "networkInterfaces_alexvm532_name": {
-            "defaultValue": "alexvm532",
+            "defaultValue": null,
             "type": "String"
         },
         "publicIPAddresses_alexvm_ip_name": {
-            "defaultValue": "alexvm-ip",
+            "defaultValue": null,
             "type": "String"
         },
         "bastionHosts_alex_vm_bastion_name": {
-            "defaultValue": "alex-vm-bastion",
+            "defaultValue": null,
             "type": "String"
         },
         "storageAccounts_alexvmrgdiag_name": {
-            "defaultValue": "alexvmrgdiag",
+            "defaultValue": null,
             "type": "String"
         },
         "virtualNetworks_alex_vm_rg_vnet_name": {
-            "defaultValue": "alex-vm-rg-vnet",
+            "defaultValue": null,
             "type": "String"
         },
         "networkSecurityGroups_alexvm_nsg_name": {
-            "defaultValue": "alexvm-nsg",
+            "defaultValue": null,
             "type": "String"
         },
         "publicIPAddresses_alex_vm_rg_vnet_ip_name": {
-            "defaultValue": "alex-vm-rg-vnet-ip",
+            "defaultValue": null,
             "type": "String"
-        }
-    },
+        },       
+        "adminUserName":{
+            "type":"string",
+            "defaultValue":null
+        },
+        "adminPassword":{
+            "type":"securestring",
+            "defaultValue":null
+
+        }   
+    },    
     "variables": {},
     "resources": [
         {
@@ -241,7 +250,7 @@
             ],
             "properties": {
                 "hardwareProfile": {
-                    "vmSize": "Standard_D2"
+                    "vmSize": "Standard_D2"                    
                 },
                 "storageProfile": {
                     "imageReference": {
@@ -275,7 +284,8 @@
                 },
                 "osProfile": {
                     "computerName": "[parameters('virtualMachines_alexvm_name')]",
-                    "adminUsername": "lexslimx",
+                    "adminUsername": "[parameters('adminUsername')]",
+                    "adminPassword":"[parameters('adminPassword')]",
                     "windowsConfiguration": {
                         "provisionVMAgent": true,
                         "enableAutomaticUpdates": true
