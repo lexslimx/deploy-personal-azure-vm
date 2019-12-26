@@ -3,40 +3,39 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "virtualMachines_alexvm_name": {
-            "defaultValue": "alexvm",
+            "value": "alexvm",
             "type": "String"
         },
         "networkInterfaces_alexvm532_name": {
-            "defaultValue": "alexvm532",
+            "value": "alexvm532",
             "type": "String"
         },
         "publicIPAddresses_alexvm_ip_name": {
-            "defaultValue": "alexvm-ip",
+            "value": "alexvm-ip",
             "type": "String"
         },
         "bastionHosts_alex_vm_bastion_name": {
-            "defaultValue": "alex-vm-bastion",
+            "value": "alex-vm-bastion",
             "type": "String"
         },
         "storageAccounts_alexvmrgdiag_name": {
-            "defaultValue": "alexvmrgdiag",
+            "value": "alexvmrgdiag",
             "type": "String"
         },
         "virtualNetworks_alex_vm_rg_vnet_name": {
-            "defaultValue": "alex-vm-rg-vnet",
+            "value": "alex-vm-rg-vnet",
             "type": "String"
         },
         "networkSecurityGroups_alexvm_nsg_name": {
-            "defaultValue": "alexvm-nsg",
+            "value": "alexvm-nsg",
             "type": "String"
         },
         "publicIPAddresses_alex_vm_rg_vnet_ip_name": {
-            "defaultValue": "alex-vm-rg-vnet-ip",
+            "value": "alex-vm-rg-vnet-ip",
             "type": "String"
         },
-        "location": {
-            "type": "string",
-            "defaultValue": "[resourceGroup().location]",
+        "location": {          
+            "value": "[resourceGroup().location]",
             "metadata": {
                 "description": "The location where the resources will be deployed."
             }
@@ -61,16 +60,15 @@
                 "keyVault": {
                     "id": "[resourceId(parameters('vaultSubscription'), parameters('vaultResourceGroupName'), 'Microsoft.KeyVault/vaults', parameters('vaultName'))]"
                 },
-                "secretName": "[parameters('adminPasswordSecretName')]"
+                "secretName": "[parameters('adminPassword_secretName')]"
             }
         },
-          "adminUserName": {
-              "type":"string",
+          "adminUserName": {             
             "reference": {
                 "keyVault": {
                     "id": "[resourceId(parameters('vaultSubscription'), parameters('vaultResourceGroupName'), 'Microsoft.KeyVault/vaults', parameters('vaultName'))]"
                 },
-                "secretName": "[parameters('adminUserNameSecretName')]"
+                "secretName": "[parameters('adminUserName_secretName')]"
             }
         }
     }
